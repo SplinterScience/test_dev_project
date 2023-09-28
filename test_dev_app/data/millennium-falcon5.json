@@ -1,0 +1,6 @@
+{
+  "autonomy": 6,
+  "departure": "T",
+  "arrival": "E",
+  "routes_db": "universe7.db"
+}

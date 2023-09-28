@@ -1,0 +1,56 @@
+{% load static %} <!-- Load the static tag library at the top of the file -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload JSON</title>
+    <style>
+        /* Add styles for the body element to use the image as a background */
+        body {
+            font-family: Arial, sans-serif; /* Optional, but it can improve readability */
+            background-image: url('{% static "background_norights.jpg" %}');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center center;
+            color: white; /* Set the text color to white */
+            font-weight: bold; /* Set the font weight to bold */
+            display: flex; /* Use flexbox layout */
+            align-items: center; /* Center items vertically */
+            justify-content: center; /* Center items horizontally */
+            height: 100vh; /* Make the body take up the full viewport height */
+            margin: 0; /* Remove default body margin */
+        }
+        
+        /* Style the form for better appearance */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+        }
+        
+        /* If you want to make the `<pre>` tag text readable against the background, you can add styles for it too. */
+        pre {
+            background-color: rgba(0, 0, 0, 0.6); /* semi-transparent black background */
+            padding: 1rem;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <audio autoplay loop>
+        <source src="{% static 'audio/audio.mp4' %}" type="audio/mp4">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if data %}
+    <pre>{{ data|safe }}</pre>
+    {% endif %}
+</body>
+</html>
